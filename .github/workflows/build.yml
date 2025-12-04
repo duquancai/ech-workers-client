@@ -38,7 +38,7 @@ jobs:
     - name: Compile main.c
       shell: cmd
       run: |
-        gcc -Wall -Wextra -std=c99 -finput-charset=UTF-8 -fexec-charset=GBK -Os -s -o ech-workers-gui.exe resource.o main.c -luser32 -lkernel32 -lcomctl32 -lgdi32 -mwindows
+        gcc -Wall -Wextra -std=c99 -finput-charset=UTF-8 -fexec-charset=GBK -Os -s -o ech-win-gui.exe resource.o main.c -luser32 -lkernel32 -lcomctl32 -lgdi32 -mwindows
         
     - name: Verify executable (修复语法错误)
       shell: cmd
@@ -46,20 +46,20 @@ jobs:
         echo "=== Verifying build ==="
         dir *.exe
         
-        if not exist ech-workers-gui.exe (
-          echo "ERROR: ech-workers-gui.exe not found!"
+        if not exist ech-win-gui.exe (
+          echo "ERROR: ech-win-gui.exe not found!"
           exit /b 1
         )
         
         echo "File size:"
-        for %%i in (ech-workers-gui.exe) do echo %%~zi bytes
+        for %%i in (ech-win-gui.exe) do echo %%~zi bytes
         echo "✅ Build successful!"
         
     - name: Create release
       if: startsWith(github.ref, 'refs/tags/v')
       uses: softprops/action-gh-release@v1
       with:
-        files: ech-workers-gui.exe
+        files: ech-win-gui.exe
         generate_release_notes: true
         draft: false
         prerelease: false
@@ -71,5 +71,5 @@ jobs:
       if: success() && !startsWith(github.ref, 'refs/tags/v')
       uses: actions/upload-artifact@v4
       with:
-        name: ech-workers-gui
-        path: ech-workers-gui.exe
+        name: ech-win-gui
+        path: ech-win-gui.exe
