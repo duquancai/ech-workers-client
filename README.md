@@ -19,7 +19,7 @@ ech-win.exe文件与本图形用户界面ech-win-gui.exe文件存放于一个文
 _worker.js用于CF上进行部署，workers、pages、snippets三种部署都适用。<br>
 
 
-- ![使用图例](/image/1.png)
+![使用图例](/image/1.png)
 
 ## 构建
 
