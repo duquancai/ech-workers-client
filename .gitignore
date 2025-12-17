@@ -16,6 +16,7 @@
 *.so
 *.so.*
 *.dylib
+*.ini
 
 # 静态库
 *.lib
